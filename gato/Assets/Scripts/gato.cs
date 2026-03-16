@@ -185,11 +185,11 @@ public class gato : MonoBehaviour
         if(matrizGato[0,0] ==1 && matrizGato[1,1] ==1 && matrizGato[2,2]==1){
             ganador =1;
         }
-        if(matrizGato[0,0] ==1 && matrizGato[1,1] ==1 && matrizGato[2,2]==1){
-            ganador =2;
-        }
         if(matrizGato[0,2] ==1 && matrizGato[1,1] ==1 && matrizGato[2,0]==1){
             ganador =1;
+        }
+        if(matrizGato[0,0] ==2 && matrizGato[1,1] ==2 && matrizGato[2,2]==2){
+            ganador =2;
         }
         if(matrizGato[0,2] ==2 && matrizGato[1,1] ==2 && matrizGato[2,0]==2){
             ganador =2;
@@ -197,19 +197,28 @@ public class gato : MonoBehaviour
 
         if(ganador == 0 && movimientos == 9){
             txtJuego.text = "EMPATE";
+            FindObjectOfType<sonido>().PlayFinJuego();
         }
 
         if(ganador ==1){
-            txtJuego.text = "Ganador: X";
+            txtJuego.text = "GANADOR: X";
+            FindObjectOfType<sonido>().PlayFinJuego();
         }
-        
+
         if(ganador ==2){
-            txtJuego.text = "Ganador: O";
+            txtJuego.text = "GANADOR: O";
+            FindObjectOfType<sonido>().PlayFinJuego();
         }
     }
 
-    public void ReiniciaJuego(){
-       SceneManager.LoadScene("Inicio");
+   public void ReiniciaJuego(){
+    StartCoroutine(Reiniciar());
+    }
+
+    IEnumerator Reiniciar(){
+        FindObjectOfType<sonido>().PlayBoton();
+         yield return new WaitForSeconds(0.3f);
+        SceneManager.LoadScene("Inicio");
     }
     
 }

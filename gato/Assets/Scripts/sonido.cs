@@ -2,15 +2,31 @@ using UnityEngine;
 
 public class sonido : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
+    public AudioClip sonidoX;
+    public AudioClip sonidoO;
+    public AudioClip sonidoBoton;
+    public AudioClip sonidoFinJuego;
+
+
+    private AudioSource audioSource;
+
+    void Start(){
+        audioSource = GetComponent<AudioSource>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    public void PlayX(){
+        audioSource.PlayOneShot(sonidoX);
+    }
+
+    public void PlayO(){
+        audioSource.PlayOneShot(sonidoO);
+    }
+
+    public void PlayBoton(){
+        audioSource.PlayOneShot(sonidoBoton);
+    }
+
+    public void PlayFinJuego(){
+        audioSource.PlayOneShot(sonidoFinJuego);
     }
 }
